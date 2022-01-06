@@ -1,12 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import Header from '../../ui/common/header.component';
+import Screen from '../../ui/common/screen.component';
 
 const AccountScreen = () => {
   return (
-    <SafeAreaView>
-      <Text>{'Something happened here'}</Text>
-    </SafeAreaView>
+    <Screen>
+      <Header title="Account" />
+    </Screen>
   );
 };
 
