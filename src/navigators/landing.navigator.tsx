@@ -8,67 +8,9 @@ import {
   HomeScreen,
   SearchScreen,
 } from '../screens';
+import {COLORS} from '../theme';
 
 const LandingStack = createBottomTabNavigator();
-
-const tabs = {
-  Home: {
-    labelStyle: {
-      color: '#0034B9',
-    },
-    icon: {
-      component: props => <Icon name="home" {...props} />,
-      activeColor: '#0034B9',
-      inactiveColor: '#919191',
-    },
-    background: {
-      activeColor: '#ECF1FF',
-      inactiveColor: 'rgba(223,215,243,0)',
-    },
-  },
-  Collection: {
-    labelStyle: {
-      color: '#0034B9',
-    },
-    icon: {
-      component: props => <Icon name="clipboard" {...props} />,
-      activeColor: '#0034B9',
-      inactiveColor: '#919191',
-    },
-    background: {
-      activeColor: '#ECF1FF',
-      inactiveColor: 'rgba(247,215,243,0)',
-    },
-  },
-  Search: {
-    labelStyle: {
-      color: '#0034B9',
-    },
-    icon: {
-      component: props => <Icon name="bell" {...props} />,
-      activeColor: '#0034B9',
-      inactiveColor: '#919191',
-    },
-    background: {
-      activeColor: '#ECF1FF',
-      inactiveColor: 'rgba(251,239,211,0)',
-    },
-  },
-  Account: {
-    labelStyle: {
-      color: '#0034B9',
-    },
-    icon: {
-      component: props => <Icon name="user" {...props} />,
-      activeColor: '#0034B9',
-      inactiveColor: '#919191',
-    },
-    background: {
-      activeColor: '#ECF1FF',
-      inactiveColor: 'rgba(207,235,239,0)',
-    },
-  },
-};
 
 const LandingNavigator = () => {
   return (
@@ -76,43 +18,51 @@ const LandingNavigator = () => {
       screenOptions={{
         tabBarStyle: {
           borderTopWidth: 1,
-          borderTopColor: 'white',
-          elevation: 5,
+          borderTopColor: COLORS.GREY2,
+          paddingTop: 10,
         },
+        tabBarAllowFontScaling: true,
+        tabBarHideOnKeyboard: true,
       }}>
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.HOME}
-        options={{headerShown: false}}
-        initialParams={{
-          backgroundColor: tabs.Home.labelStyle.color,
-          nextScreen: NAVIGATION_ROUTES.COLLECTION,
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarActiveTintColor: COLORS.PRIMARY,
         }}
         component={HomeScreen}
       />
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.COLLECTION}
-        options={{headerShown: false}}
-        initialParams={{
-          backgroundColor: tabs.Collection.labelStyle.color,
-          nextScreen: NAVIGATION_ROUTES.SEARCH,
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Collection',
+          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarActiveTintColor: COLORS.PRIMARY,
         }}
         component={CollectionScreen}
       />
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.SEARCH}
-        options={{headerShown: false}}
-        initialParams={{
-          backgroundColor: tabs.Search.labelStyle.color,
-          nextScreen: NAVIGATION_ROUTES.ACCOUNT,
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color}) => (
+            <Icon name="search" color={color} size={24} />
+          ),
+          tabBarActiveTintColor: COLORS.PRIMARY,
         }}
         component={SearchScreen}
       />
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.ACCOUNT}
-        options={{headerShown: false}}
-        initialParams={{
-          backgroundColor: tabs.Account.labelStyle.color,
-          nextScreen: NAVIGATION_ROUTES.HOME,
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Account',
+          tabBarIcon: ({color}) => <Icon name="user" color={color} size={24} />,
+          tabBarActiveTintColor: COLORS.PRIMARY,
         }}
         component={AccountScreen}
       />

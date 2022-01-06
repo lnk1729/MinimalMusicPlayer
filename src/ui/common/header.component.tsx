@@ -20,7 +20,7 @@ const Header = (props: HeaderProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 12,
+    paddingVertical: 12,
     width: '100%',
   },
   titleText: {
