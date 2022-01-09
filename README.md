@@ -1,5 +1,4 @@
 # Demo 
-- [Demo Video](https://www.youtube.com/)
 - [Release APK File](https://drive.google.com/file/d/1-NrZlacEE08ahfp44qcTKNRIiMCtPFU_/view?usp=sharing)
 # Minimal Music Player
 
