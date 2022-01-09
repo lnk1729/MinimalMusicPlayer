@@ -18,8 +18,9 @@ const LandingNavigator = () => {
       screenOptions={{
         tabBarStyle: {
           borderTopWidth: 1,
-          borderTopColor: COLORS.GREY2,
+          borderTopColor: COLORS.PRIMARY,
           paddingTop: 10,
+          backgroundColor: COLORS.BACKGROUNDDARK,
         },
         tabBarAllowFontScaling: true,
         tabBarHideOnKeyboard: true,
@@ -39,7 +40,7 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Collection',
-          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarIcon: ({color}) => <Icon name="disc" color={color} size={24} />,
           tabBarActiveTintColor: COLORS.PRIMARY,
         }}
         component={CollectionScreen}

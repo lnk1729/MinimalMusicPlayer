@@ -1,15 +1,15 @@
-export enum MessagesActionType {
+export enum SearchActionType {
   SET_RECENT_SEARCH_DATA = 'SET_RECENT_SEARCH_DATA',
   CLEAR_RECENT_SEARCH_DATA = 'CLEAR_RECENT_SEARCH_DATA',
 }
 
 export type SearchData = any[];
 export interface ISetSearchAction<T> {
-  type: MessagesActionType;
+  type: SearchActionType;
   payload: T;
 }
 export interface IClearSearchAction {
-  type: MessagesActionType;
+  type: SearchActionType;
 }
 export type SearchAction = ISetSearchAction<SearchData> | IClearSearchAction;
 
@@ -20,11 +20,9 @@ const SearchReducer = (
   action: SearchAction,
 ): SearchData => {
   switch (action.type) {
-    case MessagesActionType.SET_RECENT_SEARCH_DATA:
-      return {
-        ...action.payload,
-      };
-    case MessagesActionType.CLEAR_RECENT_SEARCH_DATA:
+    case SearchActionType.SET_RECENT_SEARCH_DATA:
+      return [...action.payload];
+    case SearchActionType.CLEAR_RECENT_SEARCH_DATA:
       return [];
     default:
       return state;

@@ -16,6 +16,13 @@ const styles = StyleSheet.create({
     borderColor: COLORS.GREY5,
     borderRadius: 8,
   },
+  flatlistContainer: {
+    marginTop: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  flatlistSeparator: {width: '100%', marginVertical: 8},
+  // flatlistFooterStyle: {width: '100%', height: 50, marginVertical: 20},
 });
 
 export default styles;

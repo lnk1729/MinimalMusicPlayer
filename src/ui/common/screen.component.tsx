@@ -1,14 +1,20 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {COLORS} from '../../theme';
 
-const Screen = ({children}) => {
-  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+const Screen = ({children, hasPadding = true}) => {
+  return (
+    <SafeAreaView
+      style={[styles.container, !hasPadding && {paddingHorizontal: 0}]}>
+      {children}
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: COLORS.BACKGROUNDDARK,
     flex: 1,
     paddingHorizontal: 20,
   },
