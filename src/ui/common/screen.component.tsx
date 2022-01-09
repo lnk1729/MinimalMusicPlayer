@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../theme';
 
-const Screen: React.FC<{hasPadding: boolean}> = ({
+const Screen: React.FC<{hasPadding?: boolean}> = ({
   hasPadding = true,
   children,
 }) => {
