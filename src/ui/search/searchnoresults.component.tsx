@@ -24,9 +24,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: COLORS.TEXTDEFAULT,
     fontWeight: '700',
-    fontSize: 18,
+    fontSize: 20,
   },
-  subtitle: {marginTop: 4, textAlign: 'center', color: COLORS.GREY2},
+  subtitle: {
+    marginTop: 4,
+    textAlign: 'center',
+    color: COLORS.GREY2,
+    fontSize: 16,
+  },
 });
 
 export default SearchNoResults;

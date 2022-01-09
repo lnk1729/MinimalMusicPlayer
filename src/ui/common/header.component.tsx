@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {Platform, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {COLORS} from '../../theme';
 
 type HeaderProps = {
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   titleText: {
     color: COLORS.PRIMARY,
     fontSize: 30,
-    fontWeight: '600',
+    fontWeight: Platform.OS === 'android' ? '700' : '600',
+    letterSpacing: 1,
   },
   subTitleText: {
     marginTop: 3,

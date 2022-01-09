@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {Platform, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {TouchableHighlight} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import {goBack} from '../../navigators';
@@ -25,7 +25,7 @@ const PlayerHeader = (props: HeaderProps) => {
           style={styles.headerIcon}
           name="chevron-left"
           color={COLORS.TEXTDEFAULT}
-          size={24}
+          size={28}
         />
       </TouchableHighlight>
       <Text style={styles.titleText}>
@@ -36,7 +36,7 @@ const PlayerHeader = (props: HeaderProps) => {
           style={styles.headerIcon}
           name="more-vertical"
           color={COLORS.TEXTDEFAULT}
-          size={24}
+          size={28}
         />
       </TouchableHighlight>
     </View>
@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: COLORS.TEXTDEFAULT,
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: Platform.OS === 'android' ? 18 : 16,
+    fontWeight: Platform.OS === 'android' ? '700' : '600',
+    letterSpacing: Platform.OS === 'android' ? 1 : 0,
   },
   subTitleText: {
     marginTop: 3,

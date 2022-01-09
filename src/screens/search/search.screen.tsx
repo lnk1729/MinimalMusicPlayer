@@ -115,13 +115,15 @@ const SearchScreen = () => {
             )}
           </View>
           {showCancel && (
-            <Button
-              color={COLORS.PRIMARY}
-              onPress={() => {
-                setEditingMode(false);
-              }}
-              title="Cancel"
-            />
+            <View style={styles.cancelButton}>
+              <Button
+                color={COLORS.PRIMARY}
+                onPress={() => {
+                  setEditingMode(false);
+                }}
+                title="Cancel"
+              />
+            </View>
           )}
         </View>
         <FlatList

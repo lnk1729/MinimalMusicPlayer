@@ -1,16 +1,16 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {COLORS} from '../../theme';
 
 const styles = StyleSheet.create({
   searchContainer: {
-    marginTop: 5,
+    marginTop: Platform.OS === 'android' ? 10 : 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   searchInput: {
     borderWidth: 1,
-    paddingVertical: 10,
+    paddingVertical: Platform.OS === 'android' ? 0 : 10,
     paddingHorizontal: 10,
     flexDirection: 'row',
     flexGrow: 1,
@@ -27,7 +27,12 @@ const styles = StyleSheet.create({
   },
   flatlistSeparator: {width: '100%', marginVertical: 8},
   flatlistFooterStyle: {width: '100%', height: 50, marginVertical: 20},
-  searchInputInner: {maxWidth: 200, color: 'white'},
+  searchInputInner: {maxWidth: 200, color: 'white', fontSize: 16},
+  cancelButton: {
+    marginLeft: Platform.OS === 'android' ? 5 : 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

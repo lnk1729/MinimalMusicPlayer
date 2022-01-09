@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {COLORS} from '../../theme';
 
 const styles = StyleSheet.create({
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
   },
   songNameContainer: {},
   songName: {
-    fontSize: 20,
+    fontSize: Platform.OS === 'android' ? 24 : 20,
     fontWeight: '600',
     color: COLORS.TEXTDEFAULT,
   },
   songArtist: {
-    fontSize: 14,
+    fontSize: Platform.OS === 'android' ? 16 : 14,
     color: COLORS.GREY2,
   },
   sliderContainer: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   timeLabel: {
     color: COLORS.TEXTDEFAULT,
-    fontSize: 12,
+    fontSize: Platform.OS === 'android' ? 14 : 12,
   },
   progressSlider: {
     padding: 0,

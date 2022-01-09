@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   artwork: {
-    width: 36,
-    height: 36,
+    width: Platform.OS === 'android' ? 40 : 36,
+    height: Platform.OS === 'android' ? 40 : 36,
   },
   textContainer: {
     marginLeft: 5,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     paddingRight: 40,
   },
   title: {
-    fontSize: 16,
+    fontSize: Platform.OS === 'android' ? 18 : 16,
     color: COLORS.TEXTDEFAULT,
     fontWeight: '500',
   },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: Platform.OS === 'android' ? 14 : 12,
     color: COLORS.GREY2,
   },
 });
