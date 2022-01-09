@@ -6,10 +6,10 @@ const SearchMedia = (keyword: string) => async dispatch => {
     .get('https://itunes.apple.com/search', {
       params: {
         term: keyword,
+        entity: 'song',
       },
     })
     .then(response => {
-      console.log(response.data);
       const searchData = response?.data?.results || [];
       dispatch({
         type: SearchActionType.SET_RECENT_SEARCH_DATA,

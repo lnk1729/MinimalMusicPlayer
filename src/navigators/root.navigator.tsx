@@ -1,5 +1,4 @@
 import React from 'react';
-// import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   CardStyleInterpolators,
@@ -8,13 +7,23 @@ import {
 import {LandingNavigator, navigationRef, NAVIGATION_ROUTES} from '.';
 import {PlayerScreen} from '../screens';
 import {Platform} from 'react-native';
+import TrackPlayer, {Capability} from 'react-native-track-player';
 
 const RootStack = createStackNavigator();
 
 const RootNavigator = () => {
-  //   React.useEffect(() => {
-  //     RNBootSplash.hide();
-  //   }, []);
+  React.useEffect(() => {
+    (async () => {
+      await TrackPlayer.setupPlayer();
+      await TrackPlayer.updateOptions({
+        capabilities: [Capability.Play, Capability.Pause],
+        compactCapabilities: [],
+      });
+    })();
+    return () => {
+      TrackPlayer.destroy();
+    };
+  }, []);
 
   return (
     <NavigationContainer ref={navigationRef}>

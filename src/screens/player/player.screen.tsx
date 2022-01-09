@@ -3,7 +3,11 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-// import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, {
+  State,
+  usePlaybackState,
+  useProgress,
+} from 'react-native-track-player';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {COLORS} from '../../theme';
@@ -15,9 +19,52 @@ import {TextUtils} from '../../utils';
 
 const PlayerScreen = ({route}) => {
   const trackData = route?.params?.mediaData as ITrackData;
+  const playbackState = usePlaybackState();
+  const progress = useProgress();
   const [isFavorite, setIsFavorite] = React.useState(false);
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    (async () => {
+      await TrackPlayer.add([
+        {
+          id: 1,
+          title: trackData.trackName,
+          artist: trackData.artistName,
+          url: require('../../assets/mp3/Kalimba.mp3'),
+        },
+      ]);
+      TrackPlayer.play();
+    })();
+    return () => {
+      TrackPlayer.stop();
+    };
+  }, [trackData]);
+
+  const togglePlay = async (newPlaybackState: State) => {
+    const currentTrack = await TrackPlayer.getCurrentTrack();
+
+    if (currentTrack !== null) {
+      if (newPlaybackState === State.Paused) {
+        if (Math.round(progress.duration) === Math.round(progress.position)) {
+          await TrackPlayer.seekTo(0);
+        }
+        await TrackPlayer.play();
+      } else {
+        await TrackPlayer.pause();
+      }
+    }
+  };
+
+  const handleSeekButton = React.useCallback(
+    async (type: 'forward' | 'backward') => {
+      if (type === 'forward') {
+        await TrackPlayer.seekTo(progress.position + 5);
+      } else {
+        await TrackPlayer.seekTo(progress.position - 5);
+      }
+    },
+    [progress.position],
+  );
 
   return (
     <Screen hasPadding={false}>
@@ -48,13 +95,27 @@ const PlayerScreen = ({route}) => {
           <View style={styles.sliderContainer}>
             <Slider
               style={styles.progressSlider}
+              value={progress.position}
+              minimumValue={0}
+              maximumValue={progress.duration}
               shouldRasterizeIOS
               minimumTrackTintColor={COLORS.PRIMARY}
               thumbTintColor={COLORS.PRIMARY}
+              onSlidingComplete={async currentPos => {
+                await TrackPlayer.seekTo(currentPos);
+              }}
             />
             <View style={styles.trackProgressionLabels}>
-              <Text style={styles.timeLabel}>{'0:00'}</Text>
-              <Text style={styles.timeLabel}>{'3:55'}</Text>
+              <Text style={styles.timeLabel}>
+                {new Date(progress.position * 1000)
+                  .toISOString()
+                  .substring(14, 19)}
+              </Text>
+              <Text style={styles.timeLabel}>
+                {new Date((progress.duration - progress.position) * 1000)
+                  .toISOString()
+                  .substring(14, 19)}
+              </Text>
             </View>
           </View>
           <View style={styles.consoleButtonsContainer}>
@@ -64,7 +125,9 @@ const PlayerScreen = ({route}) => {
               size={16}
               color={COLORS.GREY2}
             />
-            <TouchableOpacity style={styles.seekButton}>
+            <TouchableOpacity
+              onPress={() => handleSeekButton('backward')}
+              style={styles.seekButton}>
               <Icon
                 style={styles.consoleButton}
                 name="rotate-left"
@@ -72,15 +135,18 @@ const PlayerScreen = ({route}) => {
                 color={COLORS.TEXTDEFAULT}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.playButton}>
+            <TouchableOpacity
+              style={styles.playButton}
+              onPress={() => togglePlay(playbackState)}>
               <Icon
-                onPress={() => {}}
-                name="play"
+                name={playbackState === State.Playing ? 'pause' : 'play'}
                 size={22}
                 color={COLORS.TEXTDEFAULT}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.seekButton}>
+            <TouchableOpacity
+              style={styles.seekButton}
+              onPress={() => handleSeekButton('forward')}>
               <Icon
                 style={styles.consoleButton}
                 name="rotate-right"

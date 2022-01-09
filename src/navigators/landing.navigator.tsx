@@ -30,6 +30,7 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Home',
+          tabBarLabelStyle: {fontWeight: '700'},
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
           tabBarActiveTintColor: COLORS.PRIMARY,
         }}
@@ -40,6 +41,7 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Collection',
+          tabBarLabelStyle: {fontWeight: '700'},
           tabBarIcon: ({color}) => <Icon name="disc" color={color} size={24} />,
           tabBarActiveTintColor: COLORS.PRIMARY,
         }}
@@ -50,6 +52,7 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Search',
+          tabBarLabelStyle: {fontWeight: '700'},
           tabBarIcon: ({color}) => (
             <Icon name="search" color={color} size={24} />
           ),
@@ -62,6 +65,7 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Account',
+          tabBarLabelStyle: {fontWeight: '700'},
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={24} />,
           tabBarActiveTintColor: COLORS.PRIMARY,
         }}

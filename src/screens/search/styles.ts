@@ -5,24 +5,29 @@ const styles = StyleSheet.create({
   searchContainer: {
     marginTop: 5,
     flexDirection: 'row',
-    alignContent: 'space-between',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   searchInput: {
     borderWidth: 1,
     paddingVertical: 10,
     paddingHorizontal: 10,
+    flexDirection: 'row',
     flexGrow: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderColor: COLORS.GREY5,
     borderRadius: 8,
+    color: COLORS.TEXTDEFAULT,
   },
   flatlistContainer: {
-    marginTop: 10,
+    marginTop: 25,
     flexDirection: 'column',
     justifyContent: 'center',
   },
   flatlistSeparator: {width: '100%', marginVertical: 8},
-  // flatlistFooterStyle: {width: '100%', height: 50, marginVertical: 20},
+  flatlistFooterStyle: {width: '100%', height: 50, marginVertical: 20},
+  searchInputInner: {maxWidth: 200, color: 'white'},
 });
 
 export default styles;
