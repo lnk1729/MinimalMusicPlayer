@@ -15,14 +15,31 @@ import SearchResultCard, {
 } from '../../ui/search/searchresult.component';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import SearchNoResults from '../../ui/search/searchnoresults.component';
+import SearchLander from '../../ui/search/searchlander.component';
+import Loader from '../../ui/common/loader.component';
+
+const enum EmptyState {
+  LANDER = 'LANDER',
+  NONE = 'NONE',
+  NO_RESULT = 'NO_RESULT',
+}
 
 const SearchScreen = () => {
   const dispatch = useDispatch();
   const inputRef = React.createRef<TextInput>();
   const searchData = useSelector(state => state.search);
+  const [searching, setSearching] = React.useState(false);
+  const [emptyState, setEmptyState] = React.useState<EmptyState>(
+    EmptyState.LANDER,
+  );
   const [showHeader, setShowHeader] = React.useState(true);
   const [showCancel, setShowCancel] = React.useState(false);
   const [showClear, setShowClear] = React.useState(false);
+
+  const setNotFound = () => {
+    setEmptyState(EmptyState.NO_RESULT);
+  };
 
   const _onSubmitSearch = React.useCallback(
     (text: string) => {
@@ -31,8 +48,9 @@ const SearchScreen = () => {
         return;
       }
 
+      setSearching(true);
       setShowClear(true);
-      dispatch(SearchActions.SearchMedia(text));
+      dispatch(SearchActions.SearchMedia(text, setNotFound, setSearching));
     },
     [dispatch],
   );
@@ -49,6 +67,7 @@ const SearchScreen = () => {
   const handleClear = React.useCallback(() => {
     dispatch({type: SearchActionType.CLEAR_RECENT_SEARCH_DATA});
     inputRef.current?.clear();
+    setEmptyState(EmptyState.LANDER);
     _onSubmitSearch('');
   }, [_onSubmitSearch, dispatch, inputRef]);
 
@@ -58,55 +77,74 @@ const SearchScreen = () => {
     !mode && Keyboard.dismiss();
   }, []);
 
+  const renderEmptyComponent = React.useCallback(() => {
+    if (searching) {
+      return <></>;
+    } else {
+      return emptyState === EmptyState.LANDER ? (
+        <SearchLander />
+      ) : (
+        <SearchNoResults />
+      );
+    }
+  }, [emptyState, searching]);
+
   return (
-    <Screen>
-      {showHeader && <Header title="Search" />}
-      <View style={styles.searchContainer}>
-        <View style={styles.searchInput}>
-          <TextInput
-            ref={inputRef}
-            placeholder={'Search for a song or album...'}
-            placeholderTextColor={COLORS.GREY3}
-            onChangeText={onSubmitSearch}
-            onFocus={() => {
-              setEditingMode(true);
-              setShowClear(true);
-            }}
-            onBlur={() => setEditingMode(false)}
-            numberOfLines={2}
-            style={styles.searchInputInner}
-          />
-          {showClear && (
-            <TouchableOpacity onPress={handleClear}>
-              <Icon name="close-circle" size={22} color={COLORS.GREY4} />
-            </TouchableOpacity>
+    <>
+      <Screen>
+        {showHeader && <Header title="Search" />}
+        <View style={styles.searchContainer}>
+          <View style={styles.searchInput}>
+            <TextInput
+              ref={inputRef}
+              placeholder={'Search for a song or album...'}
+              placeholderTextColor={COLORS.GREY3}
+              onChangeText={onSubmitSearch}
+              onFocus={() => {
+                setEditingMode(true);
+                setShowClear(true);
+              }}
+              onBlur={() => setEditingMode(false)}
+              numberOfLines={2}
+              style={styles.searchInputInner}
+            />
+            {showClear && (
+              <TouchableOpacity onPress={handleClear}>
+                <Icon name="close-circle" size={22} color={COLORS.GREY4} />
+              </TouchableOpacity>
+            )}
+          </View>
+          {showCancel && (
+            <Button
+              color={COLORS.PRIMARY}
+              onPress={() => {
+                setEditingMode(false);
+              }}
+              title="Cancel"
+            />
           )}
         </View>
-        {showCancel && (
-          <Button
-            color={COLORS.PRIMARY}
-            onPress={() => {
-              setEditingMode(false);
-            }}
-            title="Cancel"
-          />
-        )}
-      </View>
-      <FlatList
-        data={searchData}
-        contentContainerStyle={styles.flatlistContainer}
-        ItemSeparatorComponent={() => <View style={styles.flatlistSeparator} />}
-        ListFooterComponent={() => <View style={styles.flatlistFooterStyle} />}
-        // ListEmptyComponent={renderEmptyListFiller}
-        renderItem={({item}): any => (
-          <SearchResultCard
-            trackData={item}
-            onTouch={() => onClickSearchEntry(item)}
-          />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </Screen>
+        <FlatList
+          data={searchData}
+          contentContainerStyle={styles.flatlistContainer}
+          ItemSeparatorComponent={() => (
+            <View style={styles.flatlistSeparator} />
+          )}
+          ListFooterComponent={() => (
+            <View style={styles.flatlistFooterStyle} />
+          )}
+          ListEmptyComponent={renderEmptyComponent}
+          renderItem={({item}): any => (
+            <SearchResultCard
+              trackData={item}
+              onTouch={() => onClickSearchEntry(item)}
+            />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </Screen>
+      <Loader visible={searching} />
+    </>
   );
 };
 
