@@ -1,4 +1,5 @@
 # Demo 
+- [Video](https://drive.google.com/file/d/1MGzMrnV0WDbi-uF2exnWCSHc3RbI2pD2/view?usp=sharing)
 - [Release APK File](https://drive.google.com/file/d/1-NrZlacEE08ahfp44qcTKNRIiMCtPFU_/view?usp=sharing)
 # Minimal Music Player
 
@@ -13,7 +14,7 @@
 
 ## Installation
 
-Use the Yarn package manager to install all dependencies\
+Use the Yarn package manager to install all dependencies
 ```javascript
 yarn install
 ```
