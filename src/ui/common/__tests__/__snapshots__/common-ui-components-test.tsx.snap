@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "paddingVertical": 12,
+        "width": "100%",
+      },
+      Object {},
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#1DB954",
+        "fontSize": 30,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Mock title
+  </Text>
+</View>
+`;
+
+exports[`Screen renders correctly 1`] = `
+<RNCSafeAreaView
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#333333",
+        "flex": 1,
+        "paddingHorizontal": 20,
+      },
+      Object {
+        "paddingHorizontal": 0,
+      },
+    ]
+  }
+>
+  <View />
+</RNCSafeAreaView>
+`;

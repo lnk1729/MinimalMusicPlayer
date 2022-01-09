@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchLander renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "column",
+      "marginTop": "50%",
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 18,
+        "fontWeight": "700",
+        "textAlign": "center",
+      }
+    }
+  >
+    Play some music!
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "hsla(0, 0%, 80%, 1)",
+        "marginTop": 4,
+        "textAlign": "center",
+      }
+    }
+  >
+    Search for your favorite songs
+  </Text>
+</View>
+`;
+
+exports[`Searchnoresults renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "column",
+      "marginTop": "50%",
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 18,
+        "fontWeight": "700",
+        "textAlign": "center",
+      }
+    }
+  >
+    Couldn't find a match
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "hsla(0, 0%, 80%, 1)",
+        "marginTop": 4,
+        "textAlign": "center",
+      }
+    }
+  >
+    Try searching again with a different spelling or keyword
+  </Text>
+</View>
+`;
