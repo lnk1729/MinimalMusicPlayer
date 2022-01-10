@@ -9,10 +9,20 @@ import {
   SearchScreen,
 } from '../screens';
 import {COLORS} from '../theme';
+import {TextStyle} from 'react-native';
 
 const LandingStack = createBottomTabNavigator();
 
 const LandingNavigator = () => {
+  const commonScreenSettings = {
+    headerShown: false,
+    tabBarLabelStyle: {
+      fontWeight: '700',
+      letterSpacing: 1,
+      fontSize: 12,
+    } as TextStyle,
+    tabBarActiveTintColor: COLORS.PRIMARY,
+  };
   return (
     <LandingStack.Navigator
       screenOptions={{
@@ -28,35 +38,35 @@ const LandingNavigator = () => {
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.HOME}
         options={{
-          headerShown: false,
+          headerShown: commonScreenSettings.headerShown,
           tabBarLabel: 'Home',
-          tabBarLabelStyle: {fontWeight: '700', letterSpacing: 1, fontSize: 12},
+          tabBarLabelStyle: commonScreenSettings.tabBarLabelStyle,
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
-          tabBarActiveTintColor: COLORS.PRIMARY,
+          tabBarActiveTintColor: commonScreenSettings.tabBarActiveTintColor,
         }}
         component={HomeScreen}
       />
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.COLLECTION}
         options={{
-          headerShown: false,
+          headerShown: commonScreenSettings.headerShown,
           tabBarLabel: 'Collection',
-          tabBarLabelStyle: {fontWeight: '700', letterSpacing: 1, fontSize: 12},
+          tabBarLabelStyle: commonScreenSettings.tabBarLabelStyle,
           tabBarIcon: ({color}) => <Icon name="disc" color={color} size={24} />,
-          tabBarActiveTintColor: COLORS.PRIMARY,
+          tabBarActiveTintColor: commonScreenSettings.tabBarActiveTintColor,
         }}
         component={CollectionScreen}
       />
       <LandingStack.Screen
         name={NAVIGATION_ROUTES.SEARCH}
         options={{
-          headerShown: false,
+          headerShown: commonScreenSettings.headerShown,
           tabBarLabel: 'Search',
-          tabBarLabelStyle: {fontWeight: '700', letterSpacing: 1, fontSize: 12},
+          tabBarLabelStyle: commonScreenSettings.tabBarLabelStyle,
           tabBarIcon: ({color}) => (
             <Icon name="search" color={color} size={24} />
           ),
-          tabBarActiveTintColor: COLORS.PRIMARY,
+          tabBarActiveTintColor: commonScreenSettings.tabBarActiveTintColor,
         }}
         component={SearchScreen}
       />
@@ -65,9 +75,9 @@ const LandingNavigator = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Account',
-          tabBarLabelStyle: {fontWeight: '700', letterSpacing: 1, fontSize: 12},
+          tabBarLabelStyle: commonScreenSettings.tabBarLabelStyle,
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={24} />,
-          tabBarActiveTintColor: COLORS.PRIMARY,
+          tabBarActiveTintColor: commonScreenSettings.tabBarActiveTintColor,
         }}
         component={AccountScreen}
       />
