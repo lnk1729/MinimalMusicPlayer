@@ -15,7 +15,7 @@ exports[`SearchLander renders correctly 1`] = `
     style={
       Object {
         "color": "#FFFFFF",
-        "fontSize": 18,
+        "fontSize": 20,
         "fontWeight": "700",
         "textAlign": "center",
       }
@@ -27,6 +27,7 @@ exports[`SearchLander renders correctly 1`] = `
     style={
       Object {
         "color": "hsla(0, 0%, 80%, 1)",
+        "fontSize": 16,
         "marginTop": 4,
         "textAlign": "center",
       }
@@ -52,7 +53,7 @@ exports[`Searchnoresults renders correctly 1`] = `
     style={
       Object {
         "color": "#FFFFFF",
-        "fontSize": 18,
+        "fontSize": 20,
         "fontWeight": "700",
         "textAlign": "center",
       }
@@ -64,6 +65,7 @@ exports[`Searchnoresults renders correctly 1`] = `
     style={
       Object {
         "color": "hsla(0, 0%, 80%, 1)",
+        "fontSize": 16,
         "marginTop": 4,
         "textAlign": "center",
       }
